@@ -25,12 +25,12 @@ public class MovieService {
         movieRepository.save(movie);
     }
 
-    public void updateMovie(Movie movie, Long id) {
+    public Movie updateMovie(Movie movie, Long id) {
         Movie movieToUpdate = movieRepository.findById(id).get();
         movieToUpdate.setTitle(movie.getTitle());
         movieToUpdate.setGenre(movie.getGenre());
         movieToUpdate.setDuration(movie.getDuration());
-        movieRepository.save(movieToUpdate);
+        return movieRepository.save(movieToUpdate);
     }
 
     public void deleteMovie(Long id) {

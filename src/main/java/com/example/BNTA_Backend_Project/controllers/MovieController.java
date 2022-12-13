@@ -39,8 +39,8 @@ public class MovieController {
 
     @PatchMapping (value = "/{id}")
     public ResponseEntity<Movie> updateMovie(@RequestBody Movie movie, @PathVariable Long id){
-        movieService.updateMovie(movie, id);
-        return new ResponseEntity<>(movie, HttpStatus.ACCEPTED);
+        var updated = movieService.updateMovie(movie, id);
+        return new ResponseEntity<>(updated, HttpStatus.ACCEPTED);
     }
 
     @DeleteMapping(value = "/{id}")

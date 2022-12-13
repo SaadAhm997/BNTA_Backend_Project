@@ -28,43 +28,32 @@ public class ReviewController {
 
     @GetMapping
     public ResponseEntity<List<Review>> getAllReviews(){
-        return new ResponseEntity<>(reviewRepository.findAll(), HttpStatus.OK);
+        return new ResponseEntity<>(reviewService.getAllReviews(), HttpStatus.OK);
     }
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<Optional<Review>> getMovieById(@PathVariable Long id){
-        return new ResponseEntity<>(reviewRepository.findById(id), HttpStatus.OK);
+        return new ResponseEntity(reviewService.getReviewById(id), HttpStatus.OK);
     }
 
-    //TODO check whether we need "List<Movie>"
-
-    //TODO figure out post mapping for reviews
     @PostMapping
     public ResponseEntity<Review> addReview(
             @RequestBody Review review,
             @RequestParam(name = "user_id") Long user_id,
             @RequestParam(name = "movie_id") Long movie_id){
-            User user = userRepository.findById(user_id).get();
-            Movie movie = movieRepository.findById(movie_id).get();
-            review.setUser(user);
-            review.setMovie(movie);
-            reviewRepository.save(review);
-            //Return updated review
-            return new ResponseEntity<>(review, HttpStatus.CREATED);
-        }
+        reviewService.addReview(review, user_id, movie_id);
+        return new ResponseEntity<>(review, HttpStatus.CREATED);
+    }
 
     @PatchMapping (value = "/{id}")
     public ResponseEntity<Review> updateReview(@RequestBody Review review, @PathVariable Long id){
-        Review reviewToUpdate = reviewRepository.findById(id).get();
-        reviewToUpdate.setReviewBody(review.getReviewBody());
-        reviewToUpdate.setRating(review.getRating());
-        reviewRepository.save(review);
-        return new ResponseEntity<>(reviewToUpdate, HttpStatus.ACCEPTED);
+        reviewService.updateReview(review, id);
+        return new ResponseEntity<>(review, HttpStatus.ACCEPTED);
     }
 
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Long> deleteReview(@PathVariable Long id){
-        reviewRepository.deleteById(id);
+        reviewService.deleteReview(id);
         return new ResponseEntity<>(id, HttpStatus.OK);
     }
 

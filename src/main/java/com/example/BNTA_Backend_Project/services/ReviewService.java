@@ -7,12 +7,7 @@ import com.example.BNTA_Backend_Project.repositories.MovieRepository;
 import com.example.BNTA_Backend_Project.repositories.ReviewRepository;
 import com.example.BNTA_Backend_Project.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -35,35 +30,15 @@ public class ReviewService {
         return reviewRepository.findById(id).get();
     }
 
-//    @PostMapping
-//    public ResponseEntity<Review> addReview(
-//            @RequestBody Review review,
-//            @RequestParam(name = "user_id") Long user_id,
-//            @RequestParam(name = "movie_id") Long movie_id){
-//        User user = userRepository.findById(user_id).get();
-//        Movie movie = movieRepository.findById(movie_id).get();
-//        review.setUser(user);
-//        review.setMovie(movie);
-//        reviewRepository.save(review);
-//        //Return updated review
-//        return new ResponseEntity<>(review, HttpStatus.CREATED);
-
-    /*
-    Logic:
-    Finding the user by id
-    finding movie by id
-    adding users to review
-
-     */
-
-    public void addReview(Review review) {
-
+    public Review addReview(Review review, Long user_id, Long movie_id) {
+        User user = userRepository.findById(user_id).get();
+        Movie movie = movieRepository.findById(movie_id).get();
         review.setUser(user);
         review.setMovie(movie);
         reviewRepository.save(review);
-        //Return updated review
-        
+        return review;
     }
+
     public Review updateReview(Review review, Long id) {
         Review reviewToUpdate = reviewRepository.findById(id).get();
         reviewToUpdate.setReviewBody(review.getReviewBody());

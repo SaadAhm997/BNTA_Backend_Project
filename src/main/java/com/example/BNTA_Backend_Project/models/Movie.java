@@ -17,6 +17,7 @@ public class Movie {
     private String title;
     @Column(name = "genre")
     private String genre;
+    //TODO add year
     @Column(name = "duration")
     private int duration;
     @OneToMany(mappedBy = "movie")
@@ -32,6 +33,14 @@ public class Movie {
     }
 
     public Movie(){}
+
+    public void addReview(Review review){
+        this.reviews.add(review);
+    }
+
+    public void deleteReview(Review review){
+        this.reviews.add(review);
+    }
 
     public Long getId() {
         return id;

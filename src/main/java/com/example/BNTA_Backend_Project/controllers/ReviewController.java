@@ -2,14 +2,17 @@ package com.example.BNTA_Backend_Project.controllers;
 
 import com.example.BNTA_Backend_Project.models.Movie;
 import com.example.BNTA_Backend_Project.models.Review;
+import com.example.BNTA_Backend_Project.models.User;
 import com.example.BNTA_Backend_Project.repositories.MovieRepository;
 import com.example.BNTA_Backend_Project.repositories.ReviewRepository;
+import com.example.BNTA_Backend_Project.repositories.UserRepository;
 import com.example.BNTA_Backend_Project.services.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,6 +22,13 @@ public class ReviewController {
 
     @Autowired
     ReviewRepository reviewRepository;
+    @Autowired
+    MovieRepository movieRepository;
+    @Autowired
+    UserRepository userRepository;
+
+    private User user;
+    private Movie movie;
 
     @GetMapping
     public ResponseEntity<List<Review>> getAllReviews(){
@@ -34,9 +44,18 @@ public class ReviewController {
 
     //TODO figure out post mapping for reviews
     @PostMapping
-    public ResponseEntity<Review> addReview(@RequestBody Review review){
-        return new ResponseEntity<>(reviewRepository.save(review), HttpStatus.CREATED);
-    }
+    public ResponseEntity<Review> addReview(
+            @RequestBody Review review,
+            @RequestParam(name = "user_id") Long user_id,
+            @RequestParam(name = "movie_id") Long movie_id){
+            User user = userRepository.findById(user_id).get();
+            Movie movie = movieRepository.findById(movie_id).get();
+            review.setUser(user);
+            review.setMovie(movie);
+            reviewRepository.save(review);
+            //Return updated review
+            return new ResponseEntity<>(review, HttpStatus.CREATED);
+        }
 
     @PatchMapping (value = "/{id}")
     public ResponseEntity<Review> updateReview(@RequestBody Review review, @PathVariable Long id){

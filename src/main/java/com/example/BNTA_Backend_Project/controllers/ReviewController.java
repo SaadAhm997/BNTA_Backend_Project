@@ -47,8 +47,8 @@ public class ReviewController {
 
     @PatchMapping (value = "/{id}")
     public ResponseEntity<Review> updateReview(@RequestBody Review review, @PathVariable Long id){
-        reviewService.updateReview(review, id);
-        return new ResponseEntity<>(review, HttpStatus.ACCEPTED);
+        var updated = reviewService.updateReview(review, id);
+        return new ResponseEntity<>(updated, HttpStatus.ACCEPTED);
     }
 
     @DeleteMapping(value = "/{id}")

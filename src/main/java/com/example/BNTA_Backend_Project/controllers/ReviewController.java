@@ -21,11 +21,7 @@ import java.util.Optional;
 public class ReviewController {
 
     @Autowired
-    ReviewRepository reviewRepository;
-    @Autowired
-    MovieRepository movieRepository;
-    @Autowired
-    UserRepository userRepository;
+    ReviewService reviewService;
 
     private User user;
     private Movie movie;

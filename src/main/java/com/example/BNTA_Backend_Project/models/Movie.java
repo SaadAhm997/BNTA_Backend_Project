@@ -1,7 +1,6 @@
 package com.example.BNTA_Backend_Project.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.hibernate.annotations.Cache;
 
 import javax.persistence.*;
 import java.util.ArrayList;

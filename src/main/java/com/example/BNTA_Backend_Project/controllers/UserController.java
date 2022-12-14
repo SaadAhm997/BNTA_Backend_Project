@@ -1,8 +1,6 @@
 package com.example.BNTA_Backend_Project.controllers;
 
-import com.example.BNTA_Backend_Project.models.Movie;
 import com.example.BNTA_Backend_Project.models.User;
-import com.example.BNTA_Backend_Project.services.MovieService;
 import com.example.BNTA_Backend_Project.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,7 +18,12 @@ public class UserController {
     UserService userService;
 
     @GetMapping
-    public ResponseEntity<List<User>> getAllUsers(){
+    public ResponseEntity<List<User>> getAllUsersAndFilters(
+            @RequestParam(required = false, name = "name") Optional<String> name
+    ){
+        if(name.isPresent()){
+            return new ResponseEntity<>(userService.findUserByName(name.get()), HttpStatus.OK);
+        }
         return new ResponseEntity<>(userService.getAllUsers(), HttpStatus.OK);
     }
 
@@ -28,7 +31,6 @@ public class UserController {
     public ResponseEntity<Optional<User>> getUserById(@PathVariable Long id){
         return new ResponseEntity(userService.getUserById(id), HttpStatus.OK);
     }
-
 
     @PostMapping
     public ResponseEntity<User> addUser(@RequestBody User user){

@@ -39,7 +39,6 @@ public class ReviewService {
         return review;
     }
 
-    //TODO for all classes
     public Review updateReview(Review review, Long id) {
         Review reviewToUpdate = reviewRepository.findById(id).get();
         if(review.getReviewBody() != null){
@@ -54,4 +53,26 @@ public class ReviewService {
     public void deleteReview(Long id) {
         reviewRepository.deleteById(id);
     }
+
+    //filters: rating, movie id, movie title, user id, user name
+    public List<Review> findReviewByRating(int rating){
+        return reviewRepository.findByRating(rating);
+    }
+
+    public List<Review> findReviewByReviewBody(String reviewBody){
+        return reviewRepository.findByReviewBody(reviewBody);
+    }
+    public List<Review> findReviewByMovieId(Long movieId){
+        return reviewRepository.findByMovieId(movieId);
+    }
+    public List<Review> findReviewByMovieTitle(String movieTitle){
+        return reviewRepository.findByMovieTitle(movieTitle);
+    }
+    public List<Review> findReviewByUserId(Long userId){
+        return reviewRepository.findByUserId(userId);
+    }
+    public List<Review> findReviewByUserName(String userName){
+        return reviewRepository.findByUserName(userName);
+    }
+
 }

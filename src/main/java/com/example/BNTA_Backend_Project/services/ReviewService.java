@@ -21,6 +21,7 @@ public class ReviewService {
     @Autowired
     MovieRepository movieRepository;
 
+
     public List<Review> getAllReviews() {
         return reviewRepository.findAll();
     }
@@ -35,8 +36,12 @@ public class ReviewService {
         Movie movie = movieRepository.findById(review.getMovie().getId()).get();
         review.setUser(user);
         review.setMovie(movie);
+        //userService.addUserCrypto(user.getId());
+        user.addCryptoPoints();
+        // still saves here
+        userRepository.save(user);
         reviewRepository.save(review);
-        return review;
+        return review; 
     }
 
     //TODO for all classes

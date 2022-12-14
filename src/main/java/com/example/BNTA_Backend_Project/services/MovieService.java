@@ -53,4 +53,13 @@ public class MovieService {
         }
         movieRepository.deleteById(id);
     }
+
+    //filter
+    public List<Movie> findMovieByGenre(String genre){
+        return movieRepository.findByGenre(genre);
+    }
+
+    public List<Movie> findMovieByYear(int year){
+        return movieRepository.findByYear(year);
+    }
 }

@@ -20,8 +20,22 @@ public class MovieController {
     @Autowired
     MovieService movieService;
 
+//    @GetMapping
+//    public ResponseEntity<List<Movie>> getAllMovies(){
+//        return new ResponseEntity<>(movieService.getAllMovies(), HttpStatus.OK);
+//    }
+
     @GetMapping
-    public ResponseEntity<List<Movie>> getAllMovies(){
+    public ResponseEntity<List<Movie>> getAllMoviesAndFilters(
+            @RequestParam(required = false, name = "genre") Optional<String> genre,
+            @RequestParam(required = false, name = "year") Optional<Integer> year
+    ){
+        if(genre.isPresent()){
+            return new ResponseEntity<>(movieService.findMovieByGenre(genre.get()), HttpStatus.OK);
+        }
+        if(year.isPresent()){
+            return new ResponseEntity<>(movieService.findMovieByYear(year.get()), HttpStatus.OK);
+        }
         return new ResponseEntity<>(movieService.getAllMovies(), HttpStatus.OK);
     }
 

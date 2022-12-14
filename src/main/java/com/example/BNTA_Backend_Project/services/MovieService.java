@@ -36,4 +36,13 @@ public class MovieService {
     public void deleteMovie(Long id) {
         movieRepository.deleteById(id);
     }
+
+    //find by genre
+    public List<Movie> findMovieByGenre(String genre){
+        return movieRepository.findByGenre(genre);
+    }
+
+    public List<Movie> findMovieByYear(Integer year){
+        return movieRepository.findByYear(year);
+    }
 }

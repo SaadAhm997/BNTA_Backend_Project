@@ -18,9 +18,9 @@ public class Movie {
     @Column(name = "genre")
     private String genre;
     @Column(name = "duration")
-    private int duration;
+    private Integer duration;
     @Column(name ="year")
-    private int year;
+    private Integer year;
     @OneToMany(mappedBy = "movie")
     @JsonIgnoreProperties("movie")
     private List<Review> reviews;

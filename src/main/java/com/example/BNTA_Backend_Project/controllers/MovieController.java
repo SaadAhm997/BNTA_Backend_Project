@@ -21,7 +21,16 @@ public class MovieController {
     MovieService movieService;
 
     @GetMapping
-    public ResponseEntity<List<Movie>> getAllMovies(){
+    public ResponseEntity<List<Movie>> getAllMoviesAndFilters(
+            @RequestParam(required = false, name = "genre") String genre,
+            @RequestParam(required = false, name = "year") Integer year
+    ){
+        if(genre != null){
+            return new ResponseEntity<>(movieService.findMovieByGenre(genre), HttpStatus.OK);
+        }
+        if(year != null){
+            return new ResponseEntity<>(movieService.findMovieByYear(year), HttpStatus.OK);
+        }
         return new ResponseEntity<>(movieService.getAllMovies(), HttpStatus.OK);
     }
 

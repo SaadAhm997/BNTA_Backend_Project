@@ -25,7 +25,7 @@ public class Movie {
     @JsonIgnoreProperties("movie")
     private List<Review> reviews;
 
-
+    //
     public Movie(String title, String genre, int duration, int year){
         this.title = title;
         this.genre = genre;

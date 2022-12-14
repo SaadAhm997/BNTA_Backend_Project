@@ -6,6 +6,7 @@ import com.example.BNTA_Backend_Project.models.User;
 import com.example.BNTA_Backend_Project.repositories.MovieRepository;
 import com.example.BNTA_Backend_Project.repositories.ReviewRepository;
 import com.example.BNTA_Backend_Project.repositories.UserRepository;
+import com.example.BNTA_Backend_Project.services.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -18,7 +19,7 @@ public class DataLoader implements ApplicationRunner {
     MovieRepository movieRepository;
 
     @Autowired
-    ReviewRepository reviewRepository;
+    ReviewService reviewService;
 
     @Autowired
     UserRepository userRepository;
@@ -62,26 +63,26 @@ public class DataLoader implements ApplicationRunner {
 
 //        Reviews
         Review review1 = new Review(8, "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", movie1, user1);
-        reviewRepository.save(review1);
+        reviewService.addReview(review1);
 
         Review review2 = new Review(6, "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",movie2, user2);
-        reviewRepository.save(review2);
+        reviewService.addReview(review2);
 
         Review review3 = new Review(9, "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",movie3, user3);
-        reviewRepository.save(review3);
+        reviewService.addReview(review3);
 
         Review review4 = new Review(9, "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", movie4, user4);
-        reviewRepository.save(review4);
+        reviewService.addReview(review4);
 
         Review review5 = new Review(9, "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", movie5, user5);
-        reviewRepository.save(review5);
+        reviewService.addReview(review5);
 
 //        ONE USER MANY REVIEWS
         Review review6 = new Review(9, "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", movie4, user1);
-        reviewRepository.save(review6);
+        reviewService.addReview(review6);
 
         Review review7 = new Review(9, "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", movie1, user2);
-        reviewRepository.save(review7);
+        reviewService.addReview(review7);
 
     }
 

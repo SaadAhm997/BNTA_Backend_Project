@@ -13,12 +13,20 @@ public class User {
     private Long id;
     @Column(name = "name")
     private String name;
+
+    @Column(name = "terrorRuntimeCrypto")
+    public int terrorRuntimeCrypto;
+
     @OneToMany(mappedBy = "user")
+
     @JsonIgnoreProperties("user")
+
     private List<Review> reviews;
 
+    // ME
     public User(String name){
         this.name = name;
+        this.terrorRuntimeCrypto = 0;
     }
 
     public User(){}
@@ -29,6 +37,10 @@ public class User {
 
     public void deleteReview(Review review){
         this.reviews.add(review);
+    }
+    // me
+    public void addCryptoPoints() {
+        this.terrorRuntimeCrypto++;
     }
 
     public Long getId() {
@@ -53,5 +65,13 @@ public class User {
 
     public void setReviews(List<Review> reviews) {
         this.reviews = reviews;
+    }
+
+    public int getTerrorRuntimeCrypto() {
+        return terrorRuntimeCrypto;
+    }
+
+    public void setTerrorRuntimeCrypto(int terrorRunCrypto) {
+        this.terrorRuntimeCrypto = terrorRunCrypto;
     }
 }

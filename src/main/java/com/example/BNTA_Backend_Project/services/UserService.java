@@ -32,8 +32,10 @@ public class UserService {
 
     public User updateUser(User user, Long id) {
         User userToUpdate = userRepository.findById(id).get();
-        userToUpdate.setName(user.getName());
-        return userRepository.save(userToUpdate);
+        if (user.getName() != null) {
+            userToUpdate.setName(user.getName());
+        }
+            return userRepository.save(userToUpdate);
     }
 
     public void deleteUser(Long id) {

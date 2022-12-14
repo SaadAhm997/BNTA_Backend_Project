@@ -27,9 +27,17 @@ public class MovieService {
 
     public Movie updateMovie(Movie movie, Long id) {
         Movie movieToUpdate = movieRepository.findById(id).get();
-        movieToUpdate.setTitle(movie.getTitle());
-        movieToUpdate.setGenre(movie.getGenre());
-        movieToUpdate.setDuration(movie.getDuration());
+        if(movie.getTitle() != null) {
+            movieToUpdate.setTitle(movie.getTitle());
+        }
+        if (movie.getGenre() !=null ) {
+            movieToUpdate.setGenre(movie.getGenre());
+        }
+        if (movie.getDuration() >=0 && movie.getDuration() <=1_000_000) {
+            movieToUpdate.setDuration(movie.getDuration());
+        }
+        if (movie.getYear() >=1800 && movie.getYear() <2022)
+        movieToUpdate.setYear(movie.getYear());
         return movieRepository.save(movieToUpdate);
     }
 

@@ -76,6 +76,14 @@ public class Movie {
         this.duration = duration;
     }
 
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
+
     public List<Review> getReviews() {
         return reviews;
     }

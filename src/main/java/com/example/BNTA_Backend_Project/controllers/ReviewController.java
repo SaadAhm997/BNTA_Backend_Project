@@ -38,10 +38,8 @@ public class ReviewController {
 
     @PostMapping
     public ResponseEntity<Review> addReview(
-            @RequestBody Review review,
-            @RequestParam(name = "user_id") Long user_id,
-            @RequestParam(name = "movie_id") Long movie_id){
-        reviewService.addReview(review, user_id, movie_id);
+            @RequestBody Review review){
+        reviewService.addReview(review);
         return new ResponseEntity<>(review, HttpStatus.CREATED);
     }
 

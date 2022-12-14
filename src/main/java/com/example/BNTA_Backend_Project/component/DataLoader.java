@@ -45,19 +45,19 @@ public class DataLoader implements ApplicationRunner {
         userRepository.save(user5);
 
 //        Movies
-        Movie movie1 = new Movie("Alien", "sci-fi", 117);
+        Movie movie1 = new Movie("Alien", "sci-fi", 117, 1986);
         movieRepository.save(movie1);
 
-        Movie movie2 = new Movie("The Imitation Game", "adventure", 114);
+        Movie movie2 = new Movie("The Imitation Game", "adventure", 114, 2014);
         movieRepository.save(movie2);
 
-        Movie movie3 = new Movie("Iron Man", "adventure", 126);
+        Movie movie3 = new Movie("Iron Man", "adventure", 126, 2008);
         movieRepository.save(movie3);
 
-        Movie movie4 = new Movie("The Martian", "adventure", 144);
+        Movie movie4 = new Movie("The Martian", "adventure", 144, 2015);
         movieRepository.save(movie4);
 
-        Movie movie5 = new Movie("Bravenheart", "adventure", 150);
+        Movie movie5 = new Movie("Braveheart", "adventure", 150, 1995);
         movieRepository.save(movie5);
 
 //        Reviews

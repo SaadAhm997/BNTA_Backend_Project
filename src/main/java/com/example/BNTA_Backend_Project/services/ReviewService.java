@@ -30,19 +30,24 @@ public class ReviewService {
         return reviewRepository.findById(id).get();
     }
 
-    public Review addReview(Review review, Long user_id, Long movie_id) {
-        User user = userRepository.findById(user_id).get();
-        Movie movie = movieRepository.findById(movie_id).get();
+    public Review addReview(Review review){
+        User user = userRepository.findById(review.getUser().getId()).get();
+        Movie movie = movieRepository.findById(review.getMovie().getId()).get();
         review.setUser(user);
         review.setMovie(movie);
         reviewRepository.save(review);
         return review;
     }
 
+    //TODO for all classes
     public Review updateReview(Review review, Long id) {
         Review reviewToUpdate = reviewRepository.findById(id).get();
-        reviewToUpdate.setReviewBody(review.getReviewBody());
-        reviewToUpdate.setRating(review.getRating());
+        if(review.getReviewBody() != null){
+            reviewToUpdate.setReviewBody(review.getReviewBody());}
+        //if not null, update
+        if(review.getRating() != 0 && review.getRating() <= 10){
+            reviewToUpdate.setRating(review.getRating());
+        }
         return reviewRepository.save(reviewToUpdate);
     }
 

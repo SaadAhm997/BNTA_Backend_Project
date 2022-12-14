@@ -17,18 +17,20 @@ public class Movie {
     private String title;
     @Column(name = "genre")
     private String genre;
-    //TODO add year
     @Column(name = "duration")
     private int duration;
+    @Column(name ="year")
+    private int year;
     @OneToMany(mappedBy = "movie")
     @JsonIgnoreProperties("movie")
     private List<Review> reviews;
 
 
-    public Movie(String title, String genre, int duration){
+    public Movie(String title, String genre, int duration, int year){
         this.title = title;
         this.genre = genre;
         this.duration = duration;
+        this.year = year;
         this.reviews = new ArrayList<>();
     }
 

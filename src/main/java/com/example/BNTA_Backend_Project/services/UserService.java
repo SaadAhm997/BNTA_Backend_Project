@@ -1,12 +1,14 @@
 package com.example.BNTA_Backend_Project.services;
 
 import com.example.BNTA_Backend_Project.models.Movie;
+import com.example.BNTA_Backend_Project.models.Review;
 import com.example.BNTA_Backend_Project.models.User;
 import com.example.BNTA_Backend_Project.repositories.MovieRepository;
 import com.example.BNTA_Backend_Project.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -14,6 +16,9 @@ public class UserService {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    ReviewService reviewService;
 
     public List<User> getAllUsers() {
 
@@ -39,6 +44,11 @@ public class UserService {
     }
 
     public void deleteUser(Long id) {
+        User user = userRepository.findById(id).get();
+        List<Review> reviews = user.getReviews();
+        for (Review review : reviews){
+            reviewService.deleteReview(review.getId());
+        }
         userRepository.deleteById(id);
     }
 }

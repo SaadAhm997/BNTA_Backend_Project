@@ -1,6 +1,7 @@
 package com.example.BNTA_Backend_Project.services;
 
 import com.example.BNTA_Backend_Project.models.Movie;
+import com.example.BNTA_Backend_Project.models.Review;
 import com.example.BNTA_Backend_Project.repositories.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,9 @@ public class MovieService {
 
     @Autowired
     MovieRepository movieRepository;
+
+    @Autowired
+    ReviewService reviewService;
 
     public List<Movie> getAllMovies() {
         return movieRepository.findAll();
@@ -42,6 +46,11 @@ public class MovieService {
     }
 
     public void deleteMovie(Long id) {
+        Movie movie = movieRepository.findById(id).get();
+        List<Review> reviews = movie.getReviews();
+        for (Review review : reviews){
+            reviewService.deleteReview((review.getId()));
+        }
         movieRepository.deleteById(id);
     }
 }

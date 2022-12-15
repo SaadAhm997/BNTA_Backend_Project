@@ -25,6 +25,9 @@ Spring Boot:
  To establish an MVP:
   - A restful API that allows its users to post and search for reviews about movies.
   - Implement a many-to-one relationship between a Review class and both a User and Movie class.
+  
+  <img width="924" alt="UML and ERD" src="https://user-images.githubusercontent.com/20325422/207849156-5654cbf4-3dd3-48e5-8775-b66a75697b83.png">
+  
   - CRUD functionality:
     - Create (@Post)
       
@@ -63,20 +66,15 @@ Spring Boot:
   - Implemented partial updates in services classes for each Class for use via @PatchMapping in controllers.
   - Implemented a point system
   - Explored implementing a generic service interface via class inheritance
- 
-- Any relevant diagrams such as ERDs or UML diagrams
 
-Three models are included: Review, Movie and User.
 
-<img width="924" alt="UML and ERD" src="https://user-images.githubusercontent.com/20325422/207849156-5654cbf4-3dd3-48e5-8775-b66a75697b83.png">
-
-- A list of example routes and what information they expect to receive
+## A list of example routes and what information they expect to receive
  
    - Please provide example data and the exact path of each implemented route 
  
    - Routes should be in a list organised **by-route** and not by request method (i.e. `GET`, `POST`)
  
-- Further extensions that you would have liked to include (to provide context) 
+## Further extensions that you would have liked to include (to provide context) 
  
-- While you should aim to test your app thoroughly, squashing any persistent bugs, the README should contain any additional quirks that a user should be made aware of
+## While you should aim to test your app thoroughly, squashing any persistent bugs, the README should contain any additional quirks that a user should be made aware of
   - Derived queries in Repositories for filtering requests.

@@ -2,6 +2,7 @@ package com.example.BNTA_Backend_Project.services;
 
 import com.example.BNTA_Backend_Project.models.Movie;
 import com.example.BNTA_Backend_Project.models.Review;
+import com.example.BNTA_Backend_Project.models.User;
 import com.example.BNTA_Backend_Project.repositories.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -54,12 +55,18 @@ public class MovieService {
         movieRepository.deleteById(id);
     }
 
-    //filter
+    //filters: genre, year, duration, title
     public List<Movie> findMovieByGenre(String genre){
         return movieRepository.findByGenre(genre);
     }
-
     public List<Movie> findMovieByYear(int year){
         return movieRepository.findByYear(year);
     }
+    public List<Movie> findMovieByDuration(int duration){
+        return movieRepository.findByDuration(duration);
+    }
+    public List<Movie> findMovieByTitle(String title){
+        return movieRepository.findByTitle(title);
+    }
+
 }

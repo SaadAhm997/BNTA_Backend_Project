@@ -1,18 +1,12 @@
 package com.example.BNTA_Backend_Project.controllers;
 
-import com.example.BNTA_Backend_Project.models.Movie;
 import com.example.BNTA_Backend_Project.models.Review;
-import com.example.BNTA_Backend_Project.models.User;
-import com.example.BNTA_Backend_Project.repositories.MovieRepository;
-import com.example.BNTA_Backend_Project.repositories.ReviewRepository;
-import com.example.BNTA_Backend_Project.repositories.UserRepository;
 import com.example.BNTA_Backend_Project.services.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,11 +17,33 @@ public class ReviewController {
     @Autowired
     ReviewService reviewService;
 
-    private User user;
-    private Movie movie;
-
     @GetMapping
-    public ResponseEntity<List<Review>> getAllReviews(){
+    public ResponseEntity<List<Review>> getAllReviewAndFilters(
+            @RequestParam(required = false, name = "rating") Optional<Integer> rating,
+            @RequestParam(required = false, name = "reviewBody") Optional<String> reviewBody,
+            @RequestParam(required = false, name = "movieId") Optional<Long> movieId,
+            @RequestParam(required = false, name = "movieTitle") Optional<String> movieTitle,
+            @RequestParam(required = false, name = "userId") Optional<Long> userId,
+            @RequestParam(required = false, name = "userName") Optional<String> userName
+    ){
+        if(rating.isPresent()){
+            return new ResponseEntity<>(reviewService.findReviewByRating(rating.get()), HttpStatus.OK);
+        }
+        if(reviewBody.isPresent()){
+            return new ResponseEntity<>(reviewService.findReviewByReviewBody(reviewBody.get()), HttpStatus.OK);
+        }
+        if(movieId.isPresent()){
+            return new ResponseEntity<>(reviewService.findReviewByMovieId(movieId.get()), HttpStatus.OK);
+        }
+        if(movieTitle.isPresent()){
+            return new ResponseEntity<>(reviewService.findReviewByMovieTitle(movieTitle.get()), HttpStatus.OK);
+        }
+        if(userId.isPresent()){
+            return new ResponseEntity<>(reviewService.findReviewByUserId(userId.get()), HttpStatus.OK);
+        }
+        if(userName.isPresent()){
+            return new ResponseEntity<>(reviewService.findReviewByUserName(userName.get()), HttpStatus.OK);
+        }
         return new ResponseEntity<>(reviewService.getAllReviews(), HttpStatus.OK);
     }
 

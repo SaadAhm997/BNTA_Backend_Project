@@ -1,14 +1,11 @@
 package com.example.BNTA_Backend_Project.services;
 
-import com.example.BNTA_Backend_Project.models.Movie;
 import com.example.BNTA_Backend_Project.models.Review;
 import com.example.BNTA_Backend_Project.models.User;
-import com.example.BNTA_Backend_Project.repositories.MovieRepository;
 import com.example.BNTA_Backend_Project.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -21,17 +18,14 @@ public class UserService {
     ReviewService reviewService;
 
     public List<User> getAllUsers() {
-
         return userRepository.findAll();
     }
 
     public User getUserById(Long id) {
-
         return userRepository.findById(id).get();
     }
 
     public void addUser(User user) {
-
         userRepository.save(user);
     }
 
@@ -52,4 +46,7 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
+    public List<User> findUserByName(String name){
+        return userRepository.findByName(name);
     }
+}

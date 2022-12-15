@@ -22,7 +22,7 @@ public class ReviewController {
             @RequestParam(required = false, name = "rating") Optional<Integer> rating,
             @RequestParam(required = false, name = "reviewBody") Optional<String> reviewBody,
             @RequestParam(required = false, name = "movieId") Optional<Long> movieId,
-            @RequestParam(required = false, name = "movieName") Optional<String> movieName,
+            @RequestParam(required = false, name = "movieTitle") Optional<String> movieTitle,
             @RequestParam(required = false, name = "userId") Optional<Long> userId,
             @RequestParam(required = false, name = "userName") Optional<String> userName
     ){
@@ -35,8 +35,8 @@ public class ReviewController {
         if(movieId.isPresent()){
             return new ResponseEntity<>(reviewService.findReviewByMovieId(movieId.get()), HttpStatus.OK);
         }
-        if(movieName.isPresent()){
-            return new ResponseEntity<>(reviewService.findReviewByMovieTitle(movieName.get()), HttpStatus.OK);
+        if(movieTitle.isPresent()){
+            return new ResponseEntity<>(reviewService.findReviewByMovieTitle(movieTitle.get()), HttpStatus.OK);
         }
         if(userId.isPresent()){
             return new ResponseEntity<>(reviewService.findReviewByUserId(userId.get()), HttpStatus.OK);

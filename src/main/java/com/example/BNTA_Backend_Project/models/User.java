@@ -14,8 +14,8 @@ public class User {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "terrorRuntimeCrypto")
-    public int terrorRuntimeCrypto;
+    @Column(name = "runTimeTerrorCrypto")
+    public int runTimeTerrorCrypto;
 
     @OneToMany(mappedBy = "user")
 
@@ -26,7 +26,7 @@ public class User {
     // ME
     public User(String name){
         this.name = name;
-        this.terrorRuntimeCrypto = 0;
+        this.runTimeTerrorCrypto = 0;
     }
 
     public User(){}
@@ -40,7 +40,7 @@ public class User {
     }
     // me
     public void addCryptoPoints() {
-        this.terrorRuntimeCrypto++;
+        this.runTimeTerrorCrypto++;
     }
 
     public Long getId() {
@@ -67,11 +67,11 @@ public class User {
         this.reviews = reviews;
     }
 
-    public int getTerrorRuntimeCrypto() {
-        return terrorRuntimeCrypto;
+    public int getRunTimeTerrorCrypto() {
+        return runTimeTerrorCrypto;
     }
 
-    public void setTerrorRuntimeCrypto(int terrorRunCrypto) {
-        this.terrorRuntimeCrypto = terrorRunCrypto;
+    public void setRunTimeTerrorCrypto(int runTimeTerrorCrypto) {
+        this.runTimeTerrorCrypto = runTimeTerrorCrypto;
     }
 }

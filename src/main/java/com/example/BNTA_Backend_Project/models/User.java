@@ -31,14 +31,6 @@ public class User {
 
     public User(){}
 
-    public void addReview(Review review){
-        this.reviews.add(review);
-    }
-
-    public void deleteReview(Review review){
-        this.reviews.add(review);
-    }
-    // me
     public void addCryptoPoints() {
         this.runTimeTerrorCrypto++;
     }

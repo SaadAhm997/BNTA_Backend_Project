@@ -26,7 +26,6 @@ public class ReviewService {
     }
 
     public Review getReviewById(Long id) {
-
         return reviewRepository.findById(id).get();
     }
 

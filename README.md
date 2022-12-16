@@ -70,11 +70,57 @@ Spring Boot:
 
 ## A list of example routes and what information they expect to receive
  
-   - Please provide example data and the exact path of each implemented route 
+   ### Posting a review
+   
+   /reviews
+
+   @RequestBody Review review
+   
+   Example: POST "http://localhost:8080/reviews"
+   
+   JSON: 
+   
+   ```
+   
+   {
+   "reviewBody": "Loved it!",  
+    "rating": 10,
+    "movie": {
+        "id": 1
+    },
+    "user": {
+        "id": 4
+    } 
+   }
+   
+   ```
+   
+   
+   ### Filtering
+   
+   /movies
+   
+   @PathVariable: /{id}
+   Example: GET "http://localhost:8080/movies/2"
+   
+   @RequestParam: Optional<String> genre
+   
+   @RequestParam: Optional<Integer> year
+   
+   @RequestParam: Optional<Integer> duration
+   
+   @RequestParam: Optional<String> title 
+   
+   Example: For "http://localhost:8080/movies/?title=The Martian"
+   
+   ### Deleting
+   
+   /movies
+    
+   @PathVariable: /{id}
+   Example: DELETE "http://localhost:8080/movies/2"
  
-   - Routes should be in a list organised **by-route** and not by request method (i.e. `GET`, `POST`)
  
-## Further extensions that you would have liked to include (to provide context) 
- 
-## While you should aim to test your app thoroughly, squashing any persistent bugs, the README should contain any additional quirks that a user should be made aware of
-  - Derived queries in Repositories for filtering requests.
+## Quirks
+
+  - Derived queries for filtering requests are found in the Repositories.

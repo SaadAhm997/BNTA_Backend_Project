@@ -61,28 +61,28 @@ public class DataLoader implements ApplicationRunner {
         Movie movie5 = new Movie("Braveheart", "adventure", 150, 1995);
         movieRepository.save(movie5);
 
-//        Reviews
-        Review review1 = new Review(8, "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", movie1, user1);
-        reviewService.addReview(review1);
-
-        Review review2 = new Review(6, "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",movie2, user2);
-        reviewService.addReview(review2);
-
-        Review review3 = new Review(9, "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",movie3, user3);
-        reviewService.addReview(review3);
-
-        Review review4 = new Review(9, "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", movie4, user4);
-        reviewService.addReview(review4);
-
-        Review review5 = new Review(9, "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", movie5, user5);
-        reviewService.addReview(review5);
-
-//        ONE USER MANY REVIEWS
-        Review review6 = new Review(9, "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", movie4, user1);
-        reviewService.addReview(review6);
-
-        Review review7 = new Review(9, "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", movie1, user2);
-        reviewService.addReview(review7);
+////        Reviews
+          Review review1 = new Review(8, "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", movie1, user1);
+          reviewService.addReview(review1);
+//
+//        Review review2 = new Review(6, "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",movie2, user2);
+//        reviewService.addReview(review2);
+//
+//        Review review3 = new Review(9, "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",movie3, user3);
+//        reviewService.addReview(review3);
+//
+//        Review review4 = new Review(9, "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", movie4, user4);
+//        reviewService.addReview(review4);
+//
+//        Review review5 = new Review(9, "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", movie5, user5);
+//        reviewService.addReview(review5);
+//
+////        ONE USER MANY REVIEWS
+//        Review review6 = new Review(9, "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", movie4, user1);
+//        reviewService.addReview(review6);
+//
+//        Review review7 = new Review(9, "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", movie1, user2);
+//        reviewService.addReview(review7);
 
     }
 
